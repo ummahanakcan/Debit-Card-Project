@@ -1,0 +1,199 @@
+@import "mixin";
+
+@import "variables";
+
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $font-family;
+  border: 0;
+  outline: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+%shared {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: $background-color;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: -2rem;
+
+  .card {
+    transform: scale(0.7, 0.7);
+    width: 32rem;
+    height: 19rem;
+    cursor: pointer;
+    color: $text-color;
+    perspective: 1000px;
+    margin-bottom: -11rem;
+
+    .card-inner {
+      @extend %shared;
+      transition: transform 1s;
+      transform-style: preserve-3d;
+
+      .front,
+      .back {
+        @extend %shared;
+        background-image: linear-gradient(45deg, #232526, #414345);
+        padding: 1.2rem 2rem;
+        border-radius: 1.2rem;
+        overflow: hidden;
+        z-index: 1;
+        backface-visibility: hidden;
+
+        .map-img {
+          @extend %shared;
+          opacity: 0.3;
+          z-index: -1;
+        }
+
+        .name {
+          font-weight: 500;
+          font-size: 1.4rem;
+          margin-bottom: 1.2rem;
+        }
+
+        .row {
+          @include flexbox;
+        }
+
+        .card-number {
+          font-size: 2rem;
+          margin-top: 3rem;
+        }
+
+        .card-holder {
+          font-size: 0.6rem;
+          margin-top: 1rem;
+        }
+
+        .name {
+          font-size: 1.2rem;
+          margin-top: 1.2rem;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+
+  .back {
+    transform: rotateY(180deg);
+
+    .bar {
+      background-color: #222;
+      height: 3.8rem;
+      margin-left: -2rem;
+      margin-right: -2rem;
+      margin-top: 0.7rem;
+    }
+
+    .card-cvv {
+      margin-top: 1.2rem;
+
+      div {
+        flex: 1;
+
+        img {
+          width: 100%;
+          display: block;
+          line-height: 0;
+        }
+      }
+
+      p {
+        background-color: #fff;
+        color: #000;
+        font-size: 1.4rem;
+        padding: 0.6rem 1.2rem;
+      }
+    }
+
+    .card-text {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+
+    .signature {
+      margin-top: 2rem;
+    }
+  }
+
+  form {
+    background-color: $input-background;
+    border-radius: $input-radius;
+    width: 30rem;
+    padding: $container-padding;
+    padding-top: 10rem;
+    font-size: 1rem;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+
+    .input-box {
+      margin-top: 1.2rem;
+
+      span {
+        display: block;
+        color: #999;
+        padding-bottom: 0.5rem;
+      }
+      .error1,
+      .error2 {
+        color: red;
+        padding: $input-padding;
+        font-size: 0.8rem;
+        margin-bottom: -1.2rem;
+        display: none;
+      }
+
+      input,
+      select {
+        width: 100%;
+        border: 1px solid $input-border;
+        border-radius: $input-radius;
+        padding: $input-padding;
+        color: $input-text-color;
+        font-size: 1rem;
+      }
+    }
+
+    .flexbox {
+      @include flexbox;
+      gap: 1rem;
+      .input-box {
+        flex: 1 1 150px;
+      }
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: $button-padding;
+      margin-top: 1.2rem;
+      border-radius: $button-radius;
+      font-size: 1.2rem;
+      background: $button-background;
+      color: $button-text-color;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      &:hover {
+        opacity: 0.8;
+        letter-spacing: 2px;
+      }
+    }
+  }
+}
